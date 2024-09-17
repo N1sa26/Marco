@@ -26,21 +26,39 @@ Marco
 
 ## Building
 
-
-
 ### Build docker image `marco_design`
 
 ```
-cd Marco/docker 
-./builddocker.sh
+$ cd Marco/docker 
+$ ./builddocker.sh
 ```
 
-### Build targets
+### To build Marco
+```
+$ bash launch_building_docker.sh
+# cd /data/src/CE
+# bash rebuild.sh
+```
+
+To verify if Marco is successfully built, check if `ko-clang` and `ko-clang++` exist under `/data/src/CE/bin`.
+
+### To build targets
+```
+$ bash launch_building_docker.sh
+# cd /data/src/benchmarks
+# bash rebuild.sh
+```
+
+Building all targets at once may take a while. Feel free to modify `rebuild.sh` (the one in `Marco/src/benchmarks`) to customize which targets to build. 
+
+All targets successfully built can be found under `src/benchmarks/targets/*/ce_targets`.
+
+<!-- ### Build targets
 
 ```
-cd Marco/src/benchmarks
+$ cd Marco/src/benchmarks
 
-```
+``` -->
 
 ## Test
 
