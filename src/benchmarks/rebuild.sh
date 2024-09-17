@@ -28,25 +28,9 @@ MODE="ce" # or use "cov" to build SanCov targets
 cp -r libxml2-v2.9.2 libxml2-v2.9.2_${MODE}
 cp `pwd`/targets/libxml2-v2.9.2/build.sh libxml2-v2.9.2_${MODE}
 
-
-
-
-cd libxml2-v2.9.2
-git checkout -f v2.9.2
-cd ../
-cp -r libxml2-v2.9.2 libxml2-v2.9.2_cov
-cp -r libxml2-v2.9.2 libxml2-v2.9.2_${MODE}
-pushd libxml2-v2.9.2
-    cp ../targets/libxml2-v2.9.2/build.sh ./build.sh
-    bash build.sh
-    bash build.sh _${MODE}
+pushd libxml2-v2.9.2_${MODE}
+    bash build.sh $MODE
 popd
-
-pushd libxml2-v2.9.2_cov
-    cp ../targets/libxml2-v2.9.2/build_cov.sh ./build_cov.sh
-    bash build_cov.sh
-popd
-
 
 
 

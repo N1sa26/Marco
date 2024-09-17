@@ -19,16 +19,32 @@ apt-get update && \
     libtool \
     libglib2.0-dev
 
-export CC="/data/src/CE${1}/bin/ko-clang"
-export CXX="/data/src/CE${1}/bin/ko-clang++"
-export KO_CC="clang-6.0"
-export KO_CXX="clang++-6.0"
-export KO_DONT_OPTIMIZE=1
+if [ "$MODE" == "ce" ]; then
+    export CC="/data/src/CE${1}/bin/ko-clang"
+    export CXX="/data/src/CE${1}/bin/ko-clang++"
+    export KO_CC="clang-6.0"
+    export KO_CXX="clang++-6.0"
+    export KO_DONT_OPTIMIZE=1
 
-# build lib
-./autogen.sh --host=x86_64
-CCLD="$CXX" ./configure --without-python --with-threads=no \
-    --with-zlib=no --with-lzma=no --disable-shared
+    # build lib
+    ./autogen.sh --host=x86_64
+    CCLD="$CXX" ./configure --without-python --with-threads=no \
+        --with-zlib=no --with-lzma=no --disable-shared
+fi 
+
+if [ "$MODE" == "cov" ]; then
+    export CC=clang-6.0
+    export CXX=clang++-6.0
+    export CFLAGS="-fsanitize-coverage=edge,no-prune,trace-pc-guard -fsanitize=address"
+    export CXXFLAGS="-fsanitize-coverage=edge,no-prune,trace-pc-guard -fsanitize=address"
+
+    # build lib
+    ./autogen.sh --host=x86_64
+    CCLD="$CXX $CXXFLAGS" ./configure --without-python --with-threads=no \
+        --with-zlib=no --with-lzma=no --disable-shared
+    
+fi
+
 make -j $(nproc)
 
 rm /driver.o
