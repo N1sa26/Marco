@@ -26,7 +26,7 @@ Marco
 
 ## Building
 
-### Build docker image `marco_design`
+### To build docker image `marco_design`
 
 ```
 $ cd Marco/docker 
