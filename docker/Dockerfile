@@ -34,19 +34,10 @@ RUN mkdir -p /workdir/input && \
 # apt-get update
 RUN apt-get install -y libpython3.7-dev
 RUN apt-get install -y libprotobuf-dev protobuf-compiler
-RUN pip3 install gensim numpy matplotlib annoy
-RUN pip3 install transformers torch sklearn seaborn
+RUN pip3 install numpy
 RUN python3.7 -m pip install Cython
-RUN python3.7 -m pip install nearpy
-RUN python3.7 -m pip install sysv_ipc
-RUN python3.7 -m pip install datasets
-RUN python3.7 -m pip install tokenizers
 RUN python3.7 -m pip install microdict
 RUN python3.7 -m pip install z3-solver
-RUN python3.7 -m pip install redis
-RUN python3.7 -m pip install gputil
-RUN python3.7 -m pip install psutil
-RUN python3.7 -m pip install humanize
 RUN python3.7 -m pip install networkit
 
 WORKDIR /workdir
