@@ -55,26 +55,36 @@
 # popd 
 
 ############################ file: magic_fuzzer ############################
-if [ ! -d "./file" ]; then
-    git clone https://github.com/file/file.git file
-    cd file
-    git checkout FILE5_42
-    cd ..
+# if [ ! -d "./file" ]; then
+#     git clone https://github.com/file/file.git file
+#     cd file
+#     git checkout FILE5_42
+#     cd ..
+# fi 
+
+# MODE="ce"
+# cp -r file file_${MODE}
+# cp `pwd`/targets/file/build.sh file_${MODE}
+# pushd file_${MODE}
+#     bash build.sh $MODE
+# popd 
+
+############################ vorbis: decode_fuzzer ############################
+if [ ! -d "./vorbis" ]; then
+    mkdir vorbis
+    cd vorbis
+    git clone https://github.com/xiph/ogg.git
+    git clone https://github.com/xiph/vorbis.git
+    wget -qO ./decode_fuzzer.cc https://raw.githubusercontent.com/google/oss-fuzz/688aadaf44499ddada755562109e5ca5eb3c5662/projects/vorbis/decode_fuzzer.cc
+    cd ../
 fi 
 
 MODE="ce"
-cp -r file file_${MODE}
-cp `pwd`/targets/file/build.sh file_${MODE}
-pushd file_${MODE}
+cp -r vorbis vorbis_${MODE}
+cp `pwd`/targets/vorbis/build.sh vorbis_${MODE}
+pushd vorbis_${MODE}
     bash build.sh $MODE
 popd 
-
-
-
-
-############################ vorbis: decode_fuzzer ############################
-
-
 ############################ curl_fuzzer_http ############################
 
 
