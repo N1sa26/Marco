@@ -1,6 +1,9 @@
 src/CE/target/
 
-src/benchmarks/binutils-2.33.1*
 src/benchmarks/targets/*/*_targets
+
+src/benchmarks/binutils-2.33.1*
+src/benchmarks/libxml2-v2.9.2*
+src/benchmarks/lcms*
 
 todo.md
