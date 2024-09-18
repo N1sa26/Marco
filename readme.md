@@ -49,16 +49,21 @@ $ bash launch_building_docker.sh
 # bash rebuild.sh
 ```
 
-Building all targets at once may take a while. Feel free to modify `rebuild.sh` (the one in `Marco/src/benchmarks`) to customize which targets to build. 
+Building all targets at once may take a while. Feel free to modify `rebuild.sh` (the one in `Marco/src/benchmarks`) to customize which targets to build. All targets successfully built can be found under `src/benchmarks/targets/*/ce_targets`.
 
-All targets successfully built can be found under `src/benchmarks/targets/*/ce_targets`.
-
-<!-- ### Build targets
-
+#### Script for building
+Each target's building script can be found under `src/benchmarks/targets/*/build.sh`. To manually rebuild a target (e.g. libxml) for concolic execution, try: 
 ```
-$ cd Marco/src/benchmarks
+$ bash launch_building_docker.sh
+# cd /data/src/benchmarks
+# git clone https://gitlab.gnome.org/GNOME/libxml2.git libxml2-v2.9.2_ce
+# cd libxml2-v2.9.2_ce
+# git checkout -f v2.9.2
+# cp ../targets/libxml2-v2.9.2/build.sh ./
+# ./build.sh ce
+```
+Here `ce` means to build target for concolic execution. To build the target for SanCov use `cov` instead. 
 
-``` -->
 
 ## Test
 
@@ -68,7 +73,13 @@ $ cd Marco/src/benchmarks
 
 
 ### Hybrid Fuzzing Mode
-TODO
+
+[TODO] Currently support hybrid fuzzing mode with fuzzer being AFL++ instance. To run Marco in hybrid fuzzing mode:
+
+1. Install AFL++;
+2. Build the target for fuzzer (launch the building script with argument `afl` instead of `ce`);
+3. launch exp.
+
 
 
 ## Reference

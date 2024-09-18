@@ -22,6 +22,10 @@ if [ "$MODE" == "cov" ]; then
     export CXXFLAGS="-fsanitize-coverage=edge,no-prune,trace-pc-guard -fsanitize=address"
 fi
 
+if [ "$MODE" == "afl" ]; then
+    export CC="/data/src/AFLplusplus/afl-clang"
+fi 
+
 ./configure --disable-shared
 make -j
 

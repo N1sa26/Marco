@@ -20,8 +20,8 @@ apt-get update && \
     libglib2.0-dev
 
 if [ "$MODE" == "ce" ]; then
-    export CC="/data/src/CE${1}/bin/ko-clang"
-    export CXX="/data/src/CE${1}/bin/ko-clang++"
+    export CC="/data/src/CE/bin/ko-clang"
+    export CXX="/data/src/CE/bin/ko-clang++"
     export KO_CC="clang-6.0"
     export KO_CXX="clang++-6.0"
     export KO_DONT_OPTIMIZE=1
@@ -44,6 +44,16 @@ if [ "$MODE" == "cov" ]; then
         --with-zlib=no --with-lzma=no --disable-shared
     
 fi
+
+if [ "$MODE" == "afl" ]; then
+    export CC="/data/src/AFLplusplus/afl-clang-fast"
+    export CXX="/data/src/AFLplusplus/afl-clang-fast++"
+
+    # build lib
+    ./autogen.sh --host=x86_64
+    CCLD="$CXX $CXXFLAGS" ./configure --without-python --with-threads=no \
+        --with-zlib=no --with-lzma=no --disable-shared
+fi 
 
 make -j $(nproc)
 
