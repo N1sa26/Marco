@@ -70,23 +70,41 @@
 # popd 
 
 ############################ vorbis: decode_fuzzer ############################
-if [ ! -d "./vorbis" ]; then
-    mkdir vorbis
-    cd vorbis
-    git clone https://github.com/xiph/ogg.git
-    git clone https://github.com/xiph/vorbis.git
-    wget -qO ./decode_fuzzer.cc https://raw.githubusercontent.com/google/oss-fuzz/688aadaf44499ddada755562109e5ca5eb3c5662/projects/vorbis/decode_fuzzer.cc
-    cd ../
+# if [ ! -d "./vorbis" ]; then
+#     mkdir vorbis
+#     cd vorbis
+#     git clone https://github.com/xiph/ogg.git
+#     git clone https://github.com/xiph/vorbis.git
+#     wget -qO ./decode_fuzzer.cc https://raw.githubusercontent.com/google/oss-fuzz/688aadaf44499ddada755562109e5ca5eb3c5662/projects/vorbis/decode_fuzzer.cc
+#     cd ../
+# fi 
+
+# MODE="ce"
+# cp -r vorbis vorbis_${MODE}
+# cp `pwd`/targets/vorbis/build.sh vorbis_${MODE}
+# pushd vorbis_${MODE}
+#     bash build.sh $MODE
+# popd 
+
+############################ curl: curl_fuzzer_http ############################
+if [ ! -d "./curl" ]; then
+    mkdir curl
+    cd curl
+    git clone --depth 1 https://github.com/curl/curl.git curl
+    git clone https://github.com/curl/curl-fuzzer.git curl_fuzzer
+    git -C curl_fuzzer checkout -f 9a48d437484b5ad5f2a97c0cab0d8bcbb5d058de
+    cp ../targets/curl/download_zlib.sh ./curl_fuzzer/scripts/download_zlib.sh  # coz the original downloading url is deprecated
+    cp ../targets/curl/install_curl.sh ./curl_fuzzer/scripts/install_curl.sh    # added --without-libpsl 
+    cd ..
 fi 
 
 MODE="ce"
-cp -r vorbis vorbis_${MODE}
-cp `pwd`/targets/vorbis/build.sh vorbis_${MODE}
-pushd vorbis_${MODE}
+rm -rf curl_${MODE}
+cp -r curl curl_${MODE}
+cp `pwd`/targets/curl/build.sh curl_${MODE}
+pushd curl_${MODE}
     bash build.sh $MODE
 popd 
-############################ curl_fuzzer_http ############################
-
 
 ############################ convert_woff2ttf_fuzzer ############################
 

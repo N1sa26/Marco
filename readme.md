@@ -53,7 +53,7 @@ To verify if Marco is successfully built, check if `ko-clang` and `ko-clang++` e
 | libxml2-v2.9.2  	| xml                  	|        	|
 | lcms            	| cms_transform_fuzzer 	|        	|
 | file            	| magic_fuzzer         	|        	|
-|                 	|                      	|        	|
+| curl            	| curl_fuzzer_http     	|        	|
 |                 	|                      	|        	|
 |                 	|                      	|        	|
 |                 	|                      	|        	|
