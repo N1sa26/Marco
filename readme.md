@@ -43,6 +43,26 @@ $ bash launch_building_docker.sh
 To verify if Marco is successfully built, check if `ko-clang` and `ko-clang++` exist under `/data/src/CE/bin`.
 
 ### To build targets
+
+| Benchmark       	| Target               	| Option 	|
+|-----------------	|----------------------	|--------	|
+| binutils-2.33.1 	| size                 	|        	|
+| binutils-2.33.1 	| nm-new               	| -C     	|
+| binutils-2.33.1 	| objdump              	| -D     	|
+| binutils-2.33.1 	| readelf              	| -a     	|
+| libxml2-v2.9.2  	| xml                  	|        	|
+| lcms            	| cms_transform_fuzzer 	|        	|
+| file            	| magic_fuzzer         	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+|                 	|                      	|        	|
+
 ```
 $ bash launch_building_docker.sh
 # cd /data/src/benchmarks
