@@ -194,22 +194,28 @@
 #     bash build.sh $MODE
 # popd 
 
+
 ############################ tcpdump ############################
 
-# # ------------------------- Step 1: download source code ------------------------- #
-# CODENAME=""
-# if [ ! -d "./${CODENAME}" ]; then
-    
-# fi 
+# ------------------------- Step 1: download source code ------------------------- #
+CODENAME="tcpdump"
+if [ ! -d "./${CODENAME}" ]; then
+    mkdir ${CODENAME}
+    cd ${CODENAME}
+    wget https://www.tcpdump.org/release/tcpdump-4.99.1.tar.gz
+    tar -xvf tcpdump-4.99.1.tar.gz
+    git clone https://github.com/the-tcpdump-group/libpcap.git
+    cd ../
+fi 
 
-# # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
-# MODE="ce"
-# rm -rf ${CODENAME}_${MODE}
-# cp -r ${CODENAME} ${CODENAME}_${MODE}
-# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
-# pushd ${CODENAME}_${MODE}
-#     bash build.sh $MODE
-# popd 
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+MODE="ce"
+rm -rf ${CODENAME}_${MODE}
+cp -r ${CODENAME} ${CODENAME}_${MODE}
+cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+pushd ${CODENAME}_${MODE}
+    bash build.sh $MODE
+popd 
 
 
 ############################ ftfuzzer ############################

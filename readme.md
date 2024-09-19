@@ -44,24 +44,24 @@ To verify if Marco is successfully built, check if `ko-clang` and `ko-clang++` e
 
 ### To build targets
 
-| Benchmark       	| Target                  	| Option 	|
-|-----------------	|-------------------------	|--------	|
-| binutils-2.33.1 	| size                    	|        	|
-| binutils-2.33.1 	| nm-new                  	| -C     	|
-| binutils-2.33.1 	| objdump                 	| -D     	|
-| binutils-2.33.1 	| readelf                 	| -a     	|
-| libxml2-v2.9.2  	| xml                     	|        	|
-| lcms            	| cms_transform_fuzzer    	|        	|
-| file            	| magic_fuzzer            	|        	|
-| curl            	| curl_fuzzer_http        	|        	|
-| woff2           	| convert_woff2ttf_fuzzer 	|        	|
-|                 	|                         	|        	|
-|                 	|                         	|        	|
-|                 	|                         	|        	|
-|                 	|                         	|        	|
-|                 	|                         	|        	|
-|                 	|                         	|        	|
-|                 	|                         	|        	|
+|    	| Benchmark       	| Target                  	| Option 	|
+|----	|-----------------	|-------------------------	|--------	|
+| 1  	| binutils-2.33.1 	| size                    	|        	|
+| 2  	| binutils-2.33.1 	| nm-new                  	| -C     	|
+| 3  	| binutils-2.33.1 	| objdump                 	| -D     	|
+| 4  	| binutils-2.33.1 	| readelf                 	| -a     	|
+| 5  	| libxml2-v2.9.2  	| xml                     	|        	|
+| 6  	| lcms            	| cms_transform_fuzzer    	|        	|
+| 7  	| file            	| magic_fuzzer            	|        	|
+| 8  	| vorbis          	| decode_fuzzer           	|        	|
+| 9  	| curl            	| curl_fuzzer_http        	|        	|
+| 10 	| woff2           	| convert_woff2ttf_fuzzer 	|        	|
+| 11 	| libjpeg-turbo   	| libjpeg_turbo_fuzzer    	|        	|
+| 12 	| sqlite3         	| ossfuzz                 	|        	|
+| 13 	| tcpdump-4.99.1  	| tcpdump                 	| -r     	|
+| 14 	| freetype        	| ftfuzzer                	|        	|
+| 15 	| libtiff         	| tiff_read_rgba_fuzzer   	|        	|
+| 16 	| libpng-1.2.56   	| libpng_read_fuzzer      	|        	|
 
 ```
 $ bash launch_building_docker.sh
