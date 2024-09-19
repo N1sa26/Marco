@@ -156,27 +156,33 @@
 
 ############################ libjpeg-turbo: libjpeg_turbo_fuzzer ############################
 
-# ------------------------- Step 1: download source code ------------------------- #
-CODENAME="libjpeg-turbo"
-if [ ! -d "./${CODENAME}" ]; then
-    git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git
-fi 
+# # ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="libjpeg-turbo"
+# if [ ! -d "./${CODENAME}" ]; then
+#     git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git
+# fi 
 
-# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
-MODE="ce"
-rm -rf ${CODENAME}_${MODE}
-cp -r ${CODENAME} ${CODENAME}_${MODE}
-cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
-pushd ${CODENAME}_${MODE}
-    bash build.sh $MODE
-popd 
+# # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+# MODE="ce"
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
+#     bash build.sh $MODE
+# popd 
 
-############################ ossfuzz ############################
+############################ sqlite3: ossfuzz ############################
 
 # # ------------------------- Step 1: download source code ------------------------- #
-# CODENAME=""
+# CODENAME="sqlite3"
 # if [ ! -d "./${CODENAME}" ]; then
-    
+#     apt-get update && apt-get install -y make autoconf automake libtool curl tcl zlib1g-dev
+
+#     mkdir ${CODENAME}
+#     cd ${CODENAME}
+#     curl 'https://sqlite.org/src/tarball/sqlite.tar.gz?r=c78cbf2e86850cc6' -o sqlite3.tar.gz && \
+#             tar xzf sqlite3.tar.gz --strip-components 1
+#     cd ../
 # fi 
 
 # # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #

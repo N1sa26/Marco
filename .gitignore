@@ -11,5 +11,6 @@ src/benchmarks/vorbis*
 src/benchmarks/curl*
 src/benchmarks/woff*
 src/benchmarks/libjpeg-turbo*
+src/benchmarks/sqlite3*
 
 todo.md
