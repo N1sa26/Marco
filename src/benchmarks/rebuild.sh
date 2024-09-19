@@ -220,39 +220,18 @@
 
 ############################ freetype: ftfuzzer ############################
 
-# ------------------------- Step 1: download source code ------------------------- #
-CODENAME="freetype"
-if [ ! -d "./${CODENAME}" ]; then
-    mkdir ${CODENAME}
-    cd ${CODENAME}
-        git clone https://skia.googlesource.com/third_party/freetype2
-        git clone https://github.com/unicode-org/text-rendering-tests.git TRT
-        wget https://github.com/libarchive/libarchive/releases/download/v3.4.3/libarchive-3.4.3.tar.xz
-    cd ..
-fi 
-
-# freetype -  zlib version 11->12 (?) . nolzma
-# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
-MODE="ce"
-rm -rf ${CODENAME}_${MODE}
-cp -r ${CODENAME} ${CODENAME}_${MODE}
-cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
-pushd ${CODENAME}_${MODE}
-    bash build.sh $MODE
-popd 
-
-############################ libtiff: tiff_read_rgba_fuzzer ############################
-
 # # ------------------------- Step 1: download source code ------------------------- #
-# CODENAME=""
+# CODENAME="freetype"
 # if [ ! -d "./${CODENAME}" ]; then
-    
+#     mkdir ${CODENAME}
+#     cd ${CODENAME}
+#         git clone https://skia.googlesource.com/third_party/freetype2
+#         git clone https://github.com/unicode-org/text-rendering-tests.git TRT
+#         wget https://github.com/libarchive/libarchive/releases/download/v3.4.3/libarchive-3.4.3.tar.xz
+#     cd ..
 # fi 
 
-# git clone --no-checkout https://gitlab.com/libtiff/libtiff.git libtiff
-# git -C libtiff checkout 2e822691d750c01cec5b5cc4ee73567a204ab2a3
-
-
+# # freetype -  zlib version 11->12 (?) . nolzma
 # # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 # MODE="ce"
 # rm -rf ${CODENAME}_${MODE}
@@ -261,6 +240,24 @@ popd
 # pushd ${CODENAME}_${MODE}
 #     bash build.sh $MODE
 # popd 
+
+############################ libtiff: tiff_read_rgba_fuzzer ############################
+
+# ------------------------- Step 1: download source code ------------------------- #
+CODENAME="libtiff"
+if [ ! -d "./${CODENAME}" ]; then
+    git clone --no-checkout https://gitlab.com/libtiff/libtiff.git ${CODENAME}
+    git -C libtiff checkout 2e822691d750c01cec5b5cc4ee73567a204ab2a3
+fi 
+
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+MODE="ce"
+rm -rf ${CODENAME}_${MODE}
+cp -r ${CODENAME} ${CODENAME}_${MODE}
+cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+pushd ${CODENAME}_${MODE}
+    bash build.sh $MODE
+popd 
 
 ############################ libpng-1.2.56: libpng_read_fuzzer ############################
 
