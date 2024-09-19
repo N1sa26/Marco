@@ -243,11 +243,30 @@
 
 ############################ libtiff: tiff_read_rgba_fuzzer ############################
 
+# # ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="libtiff"
+# if [ ! -d "./${CODENAME}" ]; then
+#     git clone --no-checkout https://gitlab.com/libtiff/libtiff.git ${CODENAME}
+#     git -C libtiff checkout 2e822691d750c01cec5b5cc4ee73567a204ab2a3
+# fi 
+
+# # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+# MODE="ce"
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
+#     bash build.sh $MODE
+# popd 
+
+############################ libpng-1.2.56: libpng_read_fuzzer ############################
+
 # ------------------------- Step 1: download source code ------------------------- #
-CODENAME="libtiff"
+CODENAME="libpng-1.2.56"
 if [ ! -d "./${CODENAME}" ]; then
-    git clone --no-checkout https://gitlab.com/libtiff/libtiff.git ${CODENAME}
-    git -C libtiff checkout 2e822691d750c01cec5b5cc4ee73567a204ab2a3
+    wget https://downloads.sourceforge.net/project/libpng/libpng12/older-releases/1.2.56/libpng-1.2.56.tar.gz
+    tar -xvf libpng-1.2.56.tar.gz
+    rm libpng-1.2.56.tar.gz
 fi 
 
 # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
@@ -258,24 +277,4 @@ cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
 pushd ${CODENAME}_${MODE}
     bash build.sh $MODE
 popd 
-
-############################ libpng-1.2.56: libpng_read_fuzzer ############################
-
-# # ------------------------- Step 1: download source code ------------------------- #
-# CODENAME=""
-# if [ ! -d "./${CODENAME}" ]; then
-    
-# fi 
-
-#     wget https://downloads.sourceforge.net/project/libpng/libpng12/older-releases/1.2.56/libpng-1.2.56.tar.gz
-#     tar -xvf libpng-1.2.56.tar.gz
-
-# # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
-# MODE="ce"
-# rm -rf ${CODENAME}_${MODE}
-# cp -r ${CODENAME} ${CODENAME}_${MODE}
-# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
-# pushd ${CODENAME}_${MODE}
-#     bash build.sh $MODE
-# popd 
 
