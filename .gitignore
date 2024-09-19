@@ -13,5 +13,6 @@ src/benchmarks/woff*
 src/benchmarks/libjpeg-turbo*
 src/benchmarks/sqlite3*
 src/benchmarks/tcpdump*
+src/benchmarks/freetype*
 
 todo.md

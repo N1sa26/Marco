@@ -197,17 +197,41 @@
 
 ############################ tcpdump ############################
 
+# # ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="tcpdump"
+# if [ ! -d "./${CODENAME}" ]; then
+#     mkdir ${CODENAME}
+#     cd ${CODENAME}
+#     wget https://www.tcpdump.org/release/tcpdump-4.99.1.tar.gz
+#     tar -xvf tcpdump-4.99.1.tar.gz
+#     git clone https://github.com/the-tcpdump-group/libpcap.git
+#     cd ../
+# fi 
+
+# # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+# MODE="ce"
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
+#     bash build.sh $MODE
+# popd 
+
+
+############################ freetype: ftfuzzer ############################
+
 # ------------------------- Step 1: download source code ------------------------- #
-CODENAME="tcpdump"
+CODENAME="freetype"
 if [ ! -d "./${CODENAME}" ]; then
     mkdir ${CODENAME}
     cd ${CODENAME}
-    wget https://www.tcpdump.org/release/tcpdump-4.99.1.tar.gz
-    tar -xvf tcpdump-4.99.1.tar.gz
-    git clone https://github.com/the-tcpdump-group/libpcap.git
-    cd ../
+        git clone https://skia.googlesource.com/third_party/freetype2
+        git clone https://github.com/unicode-org/text-rendering-tests.git TRT
+        wget https://github.com/libarchive/libarchive/releases/download/v3.4.3/libarchive-3.4.3.tar.xz
+    cd ..
 fi 
 
+# freetype -  zlib version 11->12 (?) . nolzma
 # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 MODE="ce"
 rm -rf ${CODENAME}_${MODE}
@@ -217,14 +241,17 @@ pushd ${CODENAME}_${MODE}
     bash build.sh $MODE
 popd 
 
-
-############################ ftfuzzer ############################
+############################ libtiff: tiff_read_rgba_fuzzer ############################
 
 # # ------------------------- Step 1: download source code ------------------------- #
 # CODENAME=""
 # if [ ! -d "./${CODENAME}" ]; then
     
 # fi 
+
+# git clone --no-checkout https://gitlab.com/libtiff/libtiff.git libtiff
+# git -C libtiff checkout 2e822691d750c01cec5b5cc4ee73567a204ab2a3
+
 
 # # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 # MODE="ce"
@@ -235,7 +262,7 @@ popd
 #     bash build.sh $MODE
 # popd 
 
-############################ tiff_read_rgba_fuzzer ############################
+############################ libpng-1.2.56: libpng_read_fuzzer ############################
 
 # # ------------------------- Step 1: download source code ------------------------- #
 # CODENAME=""
@@ -243,22 +270,8 @@ popd
     
 # fi 
 
-# # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
-# MODE="ce"
-# rm -rf ${CODENAME}_${MODE}
-# cp -r ${CODENAME} ${CODENAME}_${MODE}
-# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
-# pushd ${CODENAME}_${MODE}
-#     bash build.sh $MODE
-# popd 
-
-############################ libpng_read_fuzzer ############################
-
-# # ------------------------- Step 1: download source code ------------------------- #
-# CODENAME=""
-# if [ ! -d "./${CODENAME}" ]; then
-    
-# fi 
+#     wget https://downloads.sourceforge.net/project/libpng/libpng12/older-releases/1.2.56/libpng-1.2.56.tar.gz
+#     tar -xvf libpng-1.2.56.tar.gz
 
 # # ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 # MODE="ce"
