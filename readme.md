@@ -7,29 +7,12 @@ Concolic execution is a powerful program analysis technique for code path explor
 To learn more, checkout our [paper](https://dl.acm.org/doi/pdf/10.1145/3597503.3623301) at ICSE 2024.
 
 
-<!-- ## Directory structure
-
-```
-Marco
-├── docker
-│   ├── builddocker.sh
-│   └── Dockerfile
-├── launch.sh
-├── readme.md
-├── run_icse.sh
-├── run.sh
-└── src
-    ├── CE
-    └── scheduler
-``` -->
-
-
 ## Building
 
 ### To build docker image `marco_design`
 
 ```
-$ cd Marco/docker 
+$ cd Marco/docker
 $ ./builddocker.sh
 ```
 
@@ -72,7 +55,7 @@ $ bash launch_building_docker.sh
 Building all targets at once may take a while. Feel free to modify `rebuild.sh` (the one in `Marco/src/benchmarks`) to customize which targets to build. All targets successfully built can be found under `src/benchmarks/targets/*/ce_targets`.
 
 #### Script for building
-Each target's building script can be found under `src/benchmarks/targets/*/build.sh`. To manually rebuild a target (e.g. libxml) for concolic execution, try: 
+Each target's building script can be found under `src/benchmarks/targets/*/build.sh`. To manually rebuild a target (e.g. libxml) for concolic execution, try:
 ```
 $ bash launch_building_docker.sh
 # cd /data/src/benchmarks
@@ -82,23 +65,23 @@ $ bash launch_building_docker.sh
 # cp ../targets/libxml2-v2.9.2/build.sh ./
 # ./build.sh ce
 ```
-Here `ce` means to build target for concolic execution. To build the target for SanCov use `cov` instead. 
+Here `ce` means to build target for concolic execution. To build the target for SanCov use `cov` instead.
 
 
 ## Test
 
-
-
 ### Concolic Execution Mode
 
+Experiment configurations, such as directory of the experiment data, the number of trials, time budget, CPU core allocation, and the set of target programs to test, can be adjusted in the `launch_exp.sh` file. Once the necessary modifications are made, you can initiate the concolic execution trials by running the following command:
 
-### Hybrid Fuzzing Mode
+```
+$ ./launch_exp.sh
+```
 
-[TODO] Currently support hybrid fuzzing mode with fuzzer being AFL++ instance. To run Marco in hybrid fuzzing mode:
+The data for each trial is stored in the directory `[outroot]/[target]_[trialid]`. To check whether a trial has been successfully launched, review the contents of `debug.log` (crash message of the scheduler), `run_ce.log` (CE's log), and `Gscheduler.log` (scheduler's log) under that trial's data directory.
 
-1. Install AFL++;
-2. Build the target for fuzzer (launch the building script with argument `afl` instead of `ce`);
-3. launch exp.
+
+
 
 
 
@@ -115,3 +98,17 @@ To cite Marco in scientific work, please use the following BibTeX:
   year={2024}
 }
 ```
+
+<!--
+## TODO
+
+### Hybrid Fuzzing Mode instructions
+
+[TODO] Currently support hybrid fuzzing mode with fuzzer being AFL++ instance. To run Marco in hybrid fuzzing mode:
+
+1. Install AFL++; [todo] add building scripts
+2. Build the target for fuzzer (launch the building script with argument `afl` instead of `ce`);
+3. launch exp.
+
+### push the initial corpus of each target -->
+
