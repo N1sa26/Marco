@@ -1,41 +1,54 @@
 #!/bin/bash 
 
+
+
+
 ############################ binutils: size/nm-new/readelf/objdump ############################
 
-# if [ ! -d "./binutils-2.33.1" ]; then
+# ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="binutils-2.33.1"
+# if [ ! -d "./${CODENAME}" ]; then
 #     wget https://ftp.gnu.org/gnu/binutils/binutils-2.33.1.tar.gz
 #     tar -xvf binutils-2.33.1.tar.gz
 #     rm binutils-2.33.1.tar.gz
 # fi
 
-# MODE="ce"   # ce/cov/afl
-# cp -r ./binutils-2.33.1 ./binutils-2.33.1_${MODE}
-# cp `pwd`/targets/binutils/build.sh binutils-2.33.1_${MODE}
-# pushd binutils-2.33.1_${MODE}
-#     bash build.sh ${MODE}
-# popd
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+# MODE="ce"
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
+#     bash build.sh $MODE
+# popd 
 
 ############################ libxml2-v2.9.2: xml ############################
 
-# if [ ! -d "./libxml2-v2.9.2" ]; then
+# ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="libxml2-v2.9.2"
+# if [ ! -d "./${CODENAME}" ]; then
 #     git clone https://gitlab.gnome.org/GNOME/libxml2.git libxml2-v2.9.2
-#     pushd libxml2-v2.9.2
+#     pushd ${CODENAME}
 #         git checkout -f v2.9.2
 #     popd 
 # fi 
 
-# MODE="ce" # ce/cov/afl
-# cp -r libxml2-v2.9.2 libxml2-v2.9.2_${MODE}
-# cp `pwd`/targets/libxml2-v2.9.2/build.sh libxml2-v2.9.2_${MODE}
-
-# pushd libxml2-v2.9.2_${MODE}
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+# MODE="ce"
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
 #     bash build.sh $MODE
-# popd
+# popd 
 
 ############################ lcms: cms_transform_fuzzer ############################
-# if [ ! -d "./lcms" ]; then
-#     mkdir lcms
-#     pushd lcms
+
+# ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="lcms"
+# if [ ! -d "./${CODENAME}" ]; then
+#     mkdir ${CODENAME}
+#     pushd ${CODENAME}
 #         git clone https://github.com/mm2/Little-CMS.git     
 #         pushd Little-CMS
 #             git config --global --add safe.directory `pwd`
@@ -45,70 +58,104 @@
 #     popd
 # fi 
 
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 # # note: cms_transform_fuzzer.cc is obtained from fuzzbench
-# MODE="ce"   # ce/cov
-# cp -r lcms lcms_${MODE}
-# cp `pwd`/targets/lcms/build.sh lcms_${MODE}
-
-# pushd lcms_${MODE}
+# MODE="ce"
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
 #     bash build.sh $MODE
 # popd 
 
 ############################ file: magic_fuzzer ############################
-# if [ ! -d "./file" ]; then
-#     git clone https://github.com/file/file.git file
-#     cd file
+
+# ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="file"
+# if [ ! -d "./${CODENAME}" ]; then
+#     git clone https://github.com/file/file.git ${CODENAME}
+#     cd ${CODENAME}
 #     git checkout FILE5_42
 #     cd ..
 # fi 
 
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 # MODE="ce"
-# cp -r file file_${MODE}
-# cp `pwd`/targets/file/build.sh file_${MODE}
-# pushd file_${MODE}
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
 #     bash build.sh $MODE
 # popd 
 
 ############################ vorbis: decode_fuzzer ############################
-# if [ ! -d "./vorbis" ]; then
-#     mkdir vorbis
-#     cd vorbis
-#     git clone https://github.com/xiph/ogg.git
-#     git clone https://github.com/xiph/vorbis.git
-#     wget -qO ./decode_fuzzer.cc https://raw.githubusercontent.com/google/oss-fuzz/688aadaf44499ddada755562109e5ca5eb3c5662/projects/vorbis/decode_fuzzer.cc
+
+# ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="vorbis"
+# if [ ! -d "./${CODENAME}" ]; then
+#     mkdir ${CODENAME}
+#     cd ${CODENAME}
+#         git clone https://github.com/xiph/ogg.git
+#         git clone https://github.com/xiph/vorbis.git
+#         wget -qO ./decode_fuzzer.cc https://raw.githubusercontent.com/google/oss-fuzz/688aadaf44499ddada755562109e5ca5eb3c5662/projects/vorbis/decode_fuzzer.cc
 #     cd ../
 # fi 
 
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 # MODE="ce"
-# cp -r vorbis vorbis_${MODE}
-# cp `pwd`/targets/vorbis/build.sh vorbis_${MODE}
-# pushd vorbis_${MODE}
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
 #     bash build.sh $MODE
 # popd 
 
 ############################ curl: curl_fuzzer_http ############################
-if [ ! -d "./curl" ]; then
-    mkdir curl
-    cd curl
-    git clone --depth 1 https://github.com/curl/curl.git curl
-    git clone https://github.com/curl/curl-fuzzer.git curl_fuzzer
-    git -C curl_fuzzer checkout -f 9a48d437484b5ad5f2a97c0cab0d8bcbb5d058de
-    cp ../targets/curl/download_zlib.sh ./curl_fuzzer/scripts/download_zlib.sh  # coz the original downloading url is deprecated
-    cp ../targets/curl/install_curl.sh ./curl_fuzzer/scripts/install_curl.sh    # added --without-libpsl 
+
+# ------------------------- Step 1: download source code ------------------------- #
+# CODENAME="curl"
+# if [ ! -d "./${CODENAME}" ]; then
+#     mkdir ${CODENAME}
+#     cd ${CODENAME}
+#         git clone --depth 1 https://github.com/curl/curl.git curl
+#         git clone https://github.com/curl/curl-fuzzer.git curl_fuzzer
+#         git -C curl_fuzzer checkout -f 9a48d437484b5ad5f2a97c0cab0d8bcbb5d058de
+#         cp ../targets/curl/download_zlib.sh ./curl_fuzzer/scripts/download_zlib.sh  # coz the original downloading url is deprecated
+#         cp ../targets/curl/install_curl.sh ./curl_fuzzer/scripts/install_curl.sh    # added --without-libpsl 
+#     cd ..
+# fi 
+
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
+# MODE="ce"
+# rm -rf ${CODENAME}_${MODE}
+# cp -r ${CODENAME} ${CODENAME}_${MODE}
+# cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+# pushd ${CODENAME}_${MODE}
+#     bash build.sh $MODE
+# popd 
+
+############################ woff: convert_woff2ttf_fuzzer ############################
+
+# ------------------------- Step 1: download source code ------------------------- #
+CODENAME="woff"
+if [ ! -d "./${CODENAME}" ]; then
+    mkdir ${CODENAME} 
+    cd ${CODENAME}
+        git clone https://github.com/google/woff2.git
+        git clone https://github.com/google/brotli.git
+        git clone https://github.com/google/oss-fuzz.git
+        cp ../targets/woff/target.cc ./
     cd ..
 fi 
 
+# ------------------------- step 2: build targets (MODE: ce/cov/afl) ------------- #
 MODE="ce"
-rm -rf curl_${MODE}
-cp -r curl curl_${MODE}
-cp `pwd`/targets/curl/build.sh curl_${MODE}
-pushd curl_${MODE}
+rm -rf ${CODENAME}_${MODE}
+cp -r ${CODENAME} ${CODENAME}_${MODE}
+cp `pwd`/targets/${CODENAME}/build.sh ${CODENAME}_${MODE}
+pushd ${CODENAME}_${MODE}
     bash build.sh $MODE
 popd 
-
-############################ convert_woff2ttf_fuzzer ############################
-
-
 
 ############################ libjpeg_turbo_fuzzer ############################
 
