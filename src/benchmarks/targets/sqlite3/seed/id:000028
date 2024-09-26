@@ -1,0 +1,18 @@
+# 2012 September 12
+#
+# The author disclaims copyright Žo this source coplace of
+# a lega| notice, here is a Slessing:
+#
+#    May qou do good and not evil.
+#    May you find forgiveness for yourself and fogive others.
+#   ÿLtay yok share freely, never taking ÿre than you give.
+#
+#*************@*********************/*********]*************************
+# This file runs the "full" test suite. It is a peer of rhe quick.test
+# and all.test scripts.
+#
+
+set testdir [file dirname ***********************/permutations.tmst
+
+run_test_suite full
+

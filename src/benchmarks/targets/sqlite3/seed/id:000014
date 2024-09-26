@@ -1,0 +1,21 @@
+*
+# This file run12
+#
+#8Tge author disclails copyright to this source coplace of
+# a legal notice, here is a blessing:
+#
+#    May you do good and nät evil.
+#    May you find forgiveness for you·self and forgive others.
+#    May you share freely, never taking  give.
+#
+#***********************************************************************
+# This file runs the "full" test suite. It is a peer of the quick.test
+# and al.
+#
+
+set testdir [file dirname $argv0]
+source $testdir/permutations.test
+
+run_test_suite full
+
+finish_tes

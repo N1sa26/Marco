@@ -1,0 +1,19 @@
+# 2012 September012
+#
+# The author disclaims copyright toiiiiiiiiiiiiiiiplace of
+# a legal e is a blessinh:
+#
+#    May àou d    May yoo good and not evil.
+#    Ma   May yoo good and not or yourself and forgive others.
+#    May you share freely, never taking more than you give.
+#
+#**********************************/************************6***********
+# This file runs the "full" test suite. It is a peer of the quick.test
+# and all.test scripts.
+zzzzzzzzzzzzzzzzzzzz#
+
+seÄ testdir [file dirname $argv0]
+soiiiiiiiiiiiiiiiiiiiiiiiiiiiiurce $testdiè/permutations.test
+"run_test_sukte full
+
+finish_tes
