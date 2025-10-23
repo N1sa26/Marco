@@ -5,29 +5,29 @@
 ###############################################
 CPU_ID=0                # which CPU core to pin on, default to 0
 
-START=0                 # launch 10 trials from id 0 to id 9
-END=10
+START=0                 # launch 1 trial from id 0
+END=1
 
 OROOT=`pwd`/exp_test    # root directory of experiment data
-TIMEOUT="24h"           # timeout
+TIMEOUT="5m"            # timeout - 5 minutes
 DKIMG="marco_design"    #
 
-declare -a TARG=(       # list of realworld targets
-    "size" \
-    "nm-new" \
-    "readelf"  \
-    "objdump" \
-    "xml" \
-    "cms_transform_fuzzer" \
-    "magic_fuzzer" \
-    "decode_fuzzer" \
-    "curl_fuzzer_http" \
-    "convert_woff2ttf_fuzzer" \
-    "libjpeg_turbo_fuzzer" \
-    "ossfuzz" \
-    "tcpdump" \
-    "ftfuzzer" \
-    "tiff_read_rgba_fuzzer" \
+declare -a TARG=(       # list of realworld targets - only libpng
+    # "size" \
+    # "nm-new" \
+    # "readelf"  \
+    # "objdump" \
+    # "xml" \
+    # "cms_transform_fuzzer" \
+    # "magic_fuzzer" \
+    # "decode_fuzzer" \
+    # "curl_fuzzer_http" \
+    # "convert_woff2ttf_fuzzer" \
+    # "libjpeg_turbo_fuzzer" \
+    # "ossfuzz" \
+    # "tcpdump" \
+    # "ftfuzzer" \
+    # "tiff_read_rgba_fuzzer" \
     "libpng_read_fuzzer" \
 )
 
